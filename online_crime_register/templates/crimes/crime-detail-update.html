@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+<div class="container my-5">
+    <div class="card border-primary">
+      <div class="card-header bg-success text-white text-center fw-bold fs-4">
+        UPDATE REPORT
+      </div>
+      <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row mb mb-2">
+                <div class="mb-3">
+                    <label for="reporting_user" class="form-label">Reporting user</label>
+                    <!-- <input type="text" class="form-control" id="reporting_user" placeholder="Enter name" name="reporting_user"> -->
+                     
+                    {{form.reporting_user}}
+                     {% if form.reporting_user.errors %}
+                     <p class="text-danger">{{form.reporting_user.errors | join:" "}}</p> 
+                     {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                     <label for="crimetitle" class="form-label">Title</label>
+                    <!-- <input type="text" class="form-control" id="crimetitle" placeholder="Enter title" name="title"></div> -->
+                    {{form.title}}
+                    {% if form.title.errors %}
+                     <p class="text-danger">{{form.title.errors | join:" "}}</p> 
+                     {% endif %}
+                </div>
+        
+  
+          <div class="mb-3">
+            <label for="crimedate" class="form-label">Reporting Date</label>
+            <!-- <input class="date" type="date" id="crimedate" name="reporting_date"></input> -->
+            {{form.reporting_date}}
+            {% if form.reporting_date.errors %}
+               <p class="text-danger">{{form.reporting_date.errors | join:" "}}</p> 
+            {% endif %}
+          </div>
+  
+          <div class="mb-3">
+            <label for="crimeCategory" class="form-label" >Category</label>
+            <!-- <select class="form-select" name="category" id="crimeCategory">
+              <option selected disabled>Select category</option>
+              {% for category in categories %}
+              <option value="{{category.value}}">{{category.label}}</option>
+             {% endfor %}
+            </select> -->
+            {{form.category}}
+            {% if form.category.errors %}
+              <p class="text-danger">{{form.category.errors | join:" "}}</p> 
+            {% endif %}
+          </div>
+  
+          <div class="mb-3">
+            <label for="crimestatus" class="form-status">Status</label>
+            <!-- <select class="form-select" id="crimestatus" name="status">
+              <option selected disabled>Select status</option>
+              {% for status in statuss  %}
+              <option value="{{status.value}}">{{status.label}}</option>
+              {% endfor %}
+              
+            </select> -->
+            {{form.status}}
+            {% if form.status.errors %}
+                <p class="text-danger">{{form.status.errors | join:" "}}</p> 
+            {% endif %}
+          </div>
+  
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="crimepolice" class="form-label">Police Officer</label>
+              <!-- <input type="text" class="form-control" id="crimepolice" placeholder="name" name="police_officer"> -->
+               {{form.police_officer}}
+               {% if form.police_officer.errors %}
+                  <p class="text-danger">{{form.police_officer.errors | join:" "}}</p> 
+                {% endif %}
+            </div>
+            
+          </div>
+  
+          <div class="text-center">
+            <button type="submit" class="btn btn-success">UPDATE</button>
+          </div>
+         
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
