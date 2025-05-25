@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+
+<div class="container my-5">
+  <div class="card border-primary">
+    <div class="card-header bg-primary d-flex align-items-center justify-content-between">
+      <h3 class="text-white fw-bold fs-4">CRIMES</h3>
+        <!-- searching crime -->
+          <div class="row justify-content-end">
+                <div class ="col-10 my-1">
+                    <form action="{% url 'crimes-list' %}" mathod="get">
+                    <input class="form-control" type="text" placeholder="search crimes" name="query" {% if query %} value="{{query}}" {% endif %}>
+                    </form>   
+                </div>
+            </div>
+      
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle mb-0">
+        <thead class="table-primary text-center">
+          <tr>
+            <th scope="col">Reporting User</th>
+            <th scope="col">Title</th>
+            <th scope="col">Reporting Dtae</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
+            <th scope="col">Police Officer</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          {% for crime in crimes %}
+          <tr>
+            <td>{{ crime.reporting_user }}</td>
+            <td>{{ crime.title }}</td>
+            <td>{{ crime.reporting_date }}</td>
+            
+            <td>{{ crime.category }}</td>
+            
+            <td class="{% if crime.status == 'pending'%} text-warning {%elif crime.status == 'approved'%} text-success {%else%} text-danger {% endif %}  fw-bold">{{ crime.status }}</td>
+            
+            <td>{{ crime.police_officer }}</td>
+             <td>
+                <a href="{% url 'crime-detail-view' crime.uuid %}" class="text-primary me-2"><i class="fas fa-eye"></i></a>
+                <a href="{% url 'crime-detail-update' crime.uuid %}" class="text-warning me-2"><i class="fas fa-pen"></i></a>
+                <a href="{% url 'crime-detail-delete' crime.uuid %}" class="text-danger"><i class="fas fa-trash"></i></a>
+            </td>
+             
+          </tr>
+          {% endfor %}
+
+
+        
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
