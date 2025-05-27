@@ -53,5 +53,24 @@ class LogoutView(View):
 
         logout (request)
 
-        return redirect('crimes-list')       
+        return redirect('crimes-list')   
 
+
+
+class RegisterChoicesView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        return render(request,'authentication/register-choices.html')  
+    
+    def post(self,request,*args,**kwargs):
+
+        role = request.POST.get('role')
+
+        if role == 'user':
+
+            return redirect('user-register')
+        
+        elif role == 'police-officer':
+
+            return redirect('home')
