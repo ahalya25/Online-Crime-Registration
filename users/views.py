@@ -12,6 +12,8 @@ from django.db import transaction
 
 from online_crime_register.utility import send_email
 
+import threading
+
 class UsersRegisterView(View):
 
     def get(self,request,*args,**kwargs):
@@ -74,7 +76,10 @@ class UsersRegisterView(View):
 
                     context = {'name':user.name, 'username' : user.profile.email,'password':password }
 
-                    send_email(subject,recipient,template,context)
+                    # send_email(subject,recipient,template,context)
+                    thread = threading.Thread(target=send_email,args=(subject,recipient,template,context))
+
+                    thread.start() 
 
                     return redirect('login')
             

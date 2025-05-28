@@ -73,4 +73,4 @@ class RegisterChoicesView(View):
         
         elif role == 'police-officer':
 
-            return redirect('home')
+            return redirect('officer-register')

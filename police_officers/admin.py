@@ -5,3 +5,4 @@ from django.contrib import admin
 from . import models
 
 admin.site.register(models.PoliceOfficers)
+admin.site.register(models.AreaofExpertise)

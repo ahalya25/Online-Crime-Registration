@@ -25,7 +25,8 @@ urlpatterns = [
 
     path('crimes/',include('crimes.urls')),
     path('authentication/',include('authentication.urls')),
-    path('users/',include('users.urls'))
+    path('users/',include('users.urls')),
+    path('police_officers/',include('police_officers.urls'))
 ]
 
 urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
